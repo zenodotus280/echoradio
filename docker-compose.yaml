@@ -1,6 +1,6 @@
 services:
   echoradio:
-    image: simonsecuritypedant/echoradio:latest
+    image: simonsecuritypedant/echoradio:1.1.0
     container_name: echoradio
     ports:
       - "8000:8000"   # Icecast
@@ -8,3 +8,11 @@ services:
     restart: unless-stopped
     environment:
       - FLASK_ENV=production
+    volumes:
+      - app-data:/app/data
+
+volumes:
+  app-data:
+
+# Inspect the contents of the volume with:
+# `docker run -it --rm -v echoradio_app-data:/vol busybox ls -l /vol/`
